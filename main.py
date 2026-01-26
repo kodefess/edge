@@ -43,8 +43,13 @@ print("Memulai Edge browser...")
 options = Options()
 
 # Gunakan profile Edge yang sudah ada
-options.add_argument("user-data-dir=C:\\Users\\krido\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default")
-options.add_argument("profile-directory=Default")
+# Default - kridoveronique@gmail.com
+# Persaonal 2 - veroniquedesktop@gmail.com
+# Personal 3 - kodefess@gmail.com
+# Personal 4 - monelolabs@gmail.com
+# Profile 5 - ptvdiamond01@gmail.com
+options.add_argument("user-data-dir=C:\\Users\\krido\\AppData\\Local\\Microsoft\\Edge\\User Data\\Profile 2")
+options.add_argument("profile-directory=Profile 2")
 
 # Hilangkan deteksi automation/bot
 options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
