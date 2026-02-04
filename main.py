@@ -16,42 +16,36 @@ REFRESH_INTERVAL = 7  # detik
 
 # Daftar keyword yang lebih banyak
 keywords = [
-    "belajar python",
-    "tutorial selenium",
-    "otomasi browser",
-    "python edge webdriver",
-    "script python automation",
-    "web scraping python",
-    "data science tutorial",
-    "machine learning basics",
-    "artificial intelligence",
-    "programming tips",
-    "coding best practices",
-    "software development",
-    "python libraries",
-    "automation tools",
-    "teknologi terkini",
-    "berita hari ini",
-    "resep masakan",
-    "tips kesehatan",
-    "tutorial fotografi",
-    "belajar bahasa inggris"
+    "warren buffet portfolio",
+    "saham hari ini naik apa",
+    "harga emas antam hari ini",
+    "python selenium edge webdriver",
+    "contoh script python automation",
+    "cara web scraping python",
+    "tutorial data science pemula",
+    "machine learning untuk pemula",
+    "apa itu artificial intelligence",
+    "tips belajar coding cepat",
+    "best practice coding",
+    "belajar software development",
+    "library python populer",
+    "tools automation terbaik",
+    "perkembangan teknologi terbaru",
+    "berita terbaru hari ini",
+    "resep masakan sederhana",
+    "tips hidup sehat",
+    "tutorial fotografi pemula",
+    "cara belajar bahasa inggris cepat"
 ]
 
 # ===== SETUP EDGE =====
 print("Memulai Edge browser...")
 options = Options()
 
-# Gunakan profile Edge yang sudah ada
-# Default - kridoveronique@gmail.com
-# Persaonal 2 - veroniquedesktop@gmail.com
-# Personal 3 - kodefess@gmail.com
-# Personal 4 - monelolabs@gmail.com
-# Profile 5 - ptvdiamond01@gmail.com
-options.add_argument("user-data-dir=C:\\Users\\krido\\AppData\\Local\\Microsoft\\Edge\\User Data\\Profile 2")
-options.add_argument("profile-directory=Profile 2")
+options.add_argument("user-data-dir=C:\\Users\\krido\\AppData\\Local\\Microsoft\\Edge\\User Data")
+options.add_argument("profile-directory=Profile 13")
 
-# Hilangkan deteksi automation/bot
+# Hilangkan deteksi automation/bot banner
 options.add_experimental_option("excludeSwitches", ["enable-automation", "enable-logging"])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-blink-features=AutomationControlled")
