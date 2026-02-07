@@ -1,2 +1,2 @@
-selenium
-python-dotenv
+selenium==4.37.0
+webdriver-manager
