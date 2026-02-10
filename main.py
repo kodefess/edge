@@ -10,36 +10,36 @@ from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 
 # ===== KONFIGURASI =====
-EDGE_DRIVER_PATH = "./driver/x64/msedgedriver.exe"
+EDGE_DRIVER_PATH = "./driver/stable/144.0.3719.115/msedgedriver.exe"
 SEARCH_URL = "https://www.bing.com"
 
 # List profil yang akan digunakan secara berurutan
 PROFILES = [
-    "Profile 24",
+    "Profile 16",
 ]
 
 # Keyword yang lebih natural dan variatif (topik berbeda)
 keywords = [
-    "beginner guide to stock market investing",
-    "most in demand programming languages for the future",
-    "easy healthy breakfast ideas for busy mornings",
-    "recent trends in technology and innovation",
-    "python data analysis tutorial for beginners",
-    "best budget laptops under 1000 dollars",
-    "practical ways to improve workplace productivity",
-    "top travel destinations in southeast asia",
-    "machine learning project ideas for beginners",
-    "effective home workout routines without equipment",
-    "digital marketing strategies for small businesses",
-    "recommended books to read this year",
-    "practical solutions to reduce climate change impact",
-    "step by step guide to starting a podcast",
-    "basic photography tips for beginners",
-    "comparison of popular web development frameworks",
-    "personal financial planning tips for beginners",
-    "meditation techniques to reduce stress and anxiety",
-    "simple sustainable living ideas for everyday life",
-    "career development tips for long term growth"
+    "beginner running tips to improve stamina fast",
+    "home workout routines without gym equipment",
+    "morning habits that boost energy all day",
+    "healthy snack ideas for late night cravings",
+    "simple mental health practices for busy adults",
+    "best football drills to practice alone",
+    "how to stay consistent with a fitness routine",
+    "easy meal prep ideas for a busy work week",
+    "daily skincare routine for oily and acne prone skin",
+    "budget travel tips for first time solo travelers",
+    "how to save money without feeling restricted",
+    "best productivity apps to organize your life",
+    "weekend activities to reset your mind and body",
+    "how to reduce screen time without deleting social media",
+    "simple mindfulness exercises for stress relief",
+    "tips to improve focus while working from home",
+    "how to build healthy sleep habits naturally",
+    "outdoor hobbies that are good for mental health",
+    "ways to stay motivated when goals feel overwhelming",
+    "easy lifestyle changes for a healthier life"
 ]
 
 # ===== FUNGSI HELPER =====
