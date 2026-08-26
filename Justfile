@@ -3,6 +3,3 @@ install:
 
 run:
     python app.py
-
-run-main:
-    python main.py
