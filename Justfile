@@ -1,5 +1,9 @@
+setup:
+    pip install -r requirements.txt
+    cp .env.example .env
+
 install:
-    pip intall -r requirements.txt
+    pip install -r requirements.txt
 
 run:
     python app.py
