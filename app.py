@@ -15,9 +15,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from rich.console import Console
-from rich.panel import Panel
-from rich.table import Table
-from rich.text import Text
 
 from keywords import KEYWORDS
 
@@ -216,20 +213,14 @@ def ensure_profile_copied(profile_name):
         not os.path.exists(dst_local_state)
         and os.path.exists(src_local_state)
     ):
-        console.print(
-            "  Copying Edge Local State...",
-            style="dim cyan",
-        )
+        console.print("[dim]  · copying Edge local state...[/dim]")
 
         shutil.copy2(
             src_local_state,
             dst_local_state,
         )
 
-        console.print(
-            "  Local State copied",
-            style="green",
-        )
+        console.print("[green]  ✓[/green] [dim]local state copied[/dim]")
 
     # --------------------------------------------------------
     # Copy Profile
@@ -242,20 +233,14 @@ def ensure_profile_copied(profile_name):
                 f"Profile not found: {src_profile_path}"
             )
 
-        console.print(
-            f"  Copying profile [bold]{profile_name}[/bold]...",
-            style="dim cyan",
-        )
+        console.print(f"[dim]  · copying profile {profile_name}...[/dim]")
 
         shutil.copytree(
             src_profile_path,
             dst_profile_path,
         )
 
-        console.print(
-            "  Profile copied",
-            style="green",
-        )
+        console.print("[green]  ✓[/green] [dim]profile copied[/dim]")
 
     return dst_profile_path
 
@@ -366,24 +351,7 @@ def run_searches_for_profile(
     )
 
     console.print()
-
-    # Profile header
-    console.print(
-        Panel(
-            Text(
-                f"{profile_name}",
-                style="bold white",
-            ),
-            title="Profile",
-            border_style="blue",
-            padding=(0, 2),
-        )
-    )
-
-    console.print(
-        f"  Target searches : [bold cyan]{max_searches}[/bold cyan]"
-    )
-
+    console.print(f"[bold white]{profile_name}[/bold white] [dim]· target {max_searches} searches[/dim]")
     console.print()
 
     search_count = 0
@@ -487,17 +455,10 @@ def run_searches_for_profile(
                 # Search output
                 # --------------------------------------------
 
-                progress = (
-                    f"[bold cyan]"
-                    f"{search_count:02d}"
-                    f"[/bold cyan]"
-                    f"/"
-                    f"[dim]{max_searches}[/dim]"
-                )
-
                 console.print(
-                    f"  {progress}  "
-                    f"[white]{keyword}[/white]"
+                    f"  [green]✓[/green] "
+                    f"[dim]{search_count:02d}/{max_searches}[/dim]  "
+                    f"{keyword}"
                 )
 
                 # --------------------------------------------
@@ -590,8 +551,8 @@ def run_searches_for_profile(
 
                 console.print(
                     f"  [red]✗[/red] "
-                    f"Search #{search_count + 1} "
-                    f"[dim]({type(e).__name__})[/dim]"
+                    f"[dim]{search_count + 1:02d}/{max_searches}[/dim]  "
+                    f"search failed [dim]({type(e).__name__})[/dim]"
                 )
 
                 driver.get(
@@ -607,44 +568,22 @@ def run_searches_for_profile(
         # ----------------------------------------------------
 
         console.print()
-
-        console.print(
-            Panel(
-                f"[bold green]Completed[/bold green]  "
-                f"{search_count}/{max_searches} searches",
-                border_style="green",
-                padding=(0, 2),
-            )
-        )
+        console.print(f"[green]✓[/green] Completed [dim]{search_count}/{max_searches} searches[/dim]")
 
         return search_count
 
     except KeyboardInterrupt:
 
         console.print()
-
-        console.print(
-            Panel(
-                f"[yellow]Stopped manually[/yellow]\n"
-                f"Progress: "
-                f"{search_count}/{max_searches}",
-                title="Interrupted",
-                border_style="yellow",
-                padding=(0, 2),
-            )
-        )
+        console.print(f"[yellow]‼[/yellow] Stopped manually [dim]{search_count}/{max_searches} searches[/dim]")
 
         return search_count
 
     except Exception as e:
 
-        console.print(
-            Panel(
-                f"[red]{type(e).__name__}: {e}[/red]",
-                title="Unexpected Error",
-                border_style="red",
-            )
-        )
+        console.print()
+        console.print(f"[red]✗[/red] {type(e).__name__}")
+        console.print(f"[dim]  {e}[/dim]")
 
         return search_count
 
@@ -666,57 +605,16 @@ def main():
     # --------------------------------------------------------
 
     console.print()
-
-    console.print(
-        Panel(
-            Text(
-                "AUTOMATED SEARCH",
-                justify="center",
-                style="bold white",
-            ),
-            subtitle="Selenium • Edge",
-            border_style="cyan",
-            padding=(1, 4),
-        )
-    )
+    console.print("[bold white]Automated Search[/bold white] [dim]· Selenium / Edge[/dim]")
+    console.print()
 
     # --------------------------------------------------------
-    # Configuration table
+    # Configuration
     # --------------------------------------------------------
 
-    info_table = Table(
-        show_header=False,
-        box=None,
-        padding=(0, 2),
-    )
-
-    info_table.add_column(
-        style="dim",
-    )
-
-    info_table.add_column(
-        style="bold white",
-    )
-
-    info_table.add_row(
-        "Profiles",
-        str(total_profiles),
-    )
-
-    info_table.add_row(
-        "Target",
-        f"{SEARCHES_PER_PROFILE} searches/profile",
-    )
-
-    info_table.add_row(
-        "Keywords",
-        str(len(KEYWORDS)),
-    )
-
-    console.print(
-        info_table
-    )
-
+    console.print(f"[dim]profiles[/dim]  {total_profiles}")
+    console.print(f"[dim]target[/dim]    {SEARCHES_PER_PROFILE} searches/profile")
+    console.print(f"[dim]keywords[/dim]  {len(KEYWORDS)}")
     console.print()
 
     # --------------------------------------------------------
@@ -734,9 +632,7 @@ def main():
         start=1,
     ):
 
-        console.print(
-            f"[dim]Profile {index}/{total_profiles}[/dim]"
-        )
+        console.print(f"[dim]profile {index}/{total_profiles}[/dim]")
 
         driver = None
 
@@ -758,13 +654,9 @@ def main():
 
         except Exception as e:
 
-            console.print(
-                Panel(
-                    f"[red]{type(e).__name__}: {e}[/red]",
-                    title=f"Error • {profile}",
-                    border_style="red",
-                )
-            )
+            console.print()
+            console.print(f"[red]✗[/red] Error [dim]· {profile}[/dim]")
+            console.print(f"[dim]  {type(e).__name__}: {e}[/dim]")
 
         finally:
 
@@ -789,54 +681,12 @@ def main():
     # --------------------------------------------------------
 
     console.print()
-
-    summary = Table(
-        title="Session Summary",
-        title_style="bold cyan",
-        border_style="dim",
-        padding=(0, 2),
-    )
-
-    summary.add_column(
-        "Metric",
-        style="dim",
-    )
-
-    summary.add_column(
-        "Result",
-        justify="right",
-        style="bold white",
-    )
-
-    summary.add_row(
-        "Profiles processed",
-        str(total_profiles),
-    )
-
-    summary.add_row(
-        "Searches completed",
-        str(total_searches),
-    )
-
-    summary.add_row(
-        "Average / profile",
-        f"{total_searches / total_profiles:.1f}",
-    )
-
-    console.print(
-        summary
-    )
-
+    console.print("[bold white]Session Summary[/bold white]")
+    console.print(f"[dim]  profiles processed[/dim]  {total_profiles}")
+    console.print(f"[dim]  searches completed[/dim]  {total_searches}")
+    console.print(f"[dim]  average / profile[/dim]   {total_searches / total_profiles:.1f}")
     console.print()
-
-    console.print(
-        Panel(
-            "[bold green]Session completed successfully.[/bold green]",
-            border_style="green",
-            padding=(0, 2),
-        )
-    )
-
+    console.print("[green]✓[/green] Session completed successfully.")
     console.print()
 
 
@@ -851,17 +701,10 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
 
         console.print()
-        console.print(
-            "[yellow]Script stopped.[/yellow]"
-        )
+        console.print("[yellow]‼[/yellow] Script stopped.")
 
     except Exception as e:
 
         console.print()
-        console.print(
-            Panel(
-                f"[red]{type(e).__name__}: {e}[/red]",
-                title="Fatal Error",
-                border_style="red",
-            )
-        )
+        console.print(f"[red]✗[/red] Fatal error [dim]· {type(e).__name__}[/dim]")
+        console.print(f"[dim]  {e}[/dim]")
